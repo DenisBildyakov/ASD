@@ -258,6 +258,19 @@ class LinkedList2Test {
     }
 
     @Test
+    void insertAfter_single() {
+        LinkedList2 linkedList1 = new LinkedList2();
+        linkedList1.addInTail(new Node(5));
+
+        linkedList1.insertAfter(null, new Node(88));
+        Assertions.assertEquals(88, linkedList1.head.value);
+        Assertions.assertEquals(5, linkedList1.tail.value);
+        Assertions.assertEquals(5, linkedList1.head.next.value);
+        Assertions.assertEquals(88, linkedList1.tail.prev.value);
+
+    }
+
+    @Test
     void insertAfter_empty() {
         LinkedList2 linkedList1 = new LinkedList2();
 
