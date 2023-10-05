@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class LinkedList2 {
     public Node head;
@@ -29,7 +29,9 @@ public class LinkedList2 {
         Node tmp = this.head;
         this.head = _item;
         _item.next = tmp;
-        tmp.prev = _item;
+        if (tmp != null) {
+            tmp.prev = _item;
+        }
         if (listSize == 0) {
             this.tail = _item;
             _item.prev = this.head;

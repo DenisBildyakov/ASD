@@ -256,4 +256,14 @@ class LinkedList2Test {
         Assertions.assertEquals(10, linkedList.count());
 
     }
+
+    @Test
+    void insertAfter_empty() {
+        LinkedList2 linkedList1 = new LinkedList2();
+
+        linkedList1.insertAfter(null, new Node(88));
+        Assertions.assertEquals(88, linkedList1.head.value);
+        Assertions.assertEquals(88, linkedList1.tail.value);
+
+    }
 }
