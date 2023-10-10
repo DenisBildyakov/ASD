@@ -1,3 +1,7 @@
+package com.example.asd;
+
+import java.lang.reflect.Array;
+
 public class DynArray<T> {
     public T[] array;
     public int count;
@@ -30,8 +34,8 @@ public class DynArray<T> {
 
     public void append(T itm) {
         if (count == array.length) {
-            makeArray(capacity * 2);
             capacity = capacity * 2;
+            makeArray(capacity);
         }
         array[count] = itm;
         count++;
@@ -42,7 +46,8 @@ public class DynArray<T> {
             throw new ArrayIndexOutOfBoundsException();
         }
         if (count == array.length) {
-            makeArray(capacity * 2);
+            capacity = capacity * 2;
+            makeArray(capacity);
         }
         for (int i = count; i > index; i--) {
             array[i] = array[i - 1];
