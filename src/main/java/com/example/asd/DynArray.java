@@ -1,7 +1,3 @@
-package com.example.asd;
-
-import java.lang.reflect.Array;
-
 public class DynArray<T> {
     public T[] array;
     public int count;
@@ -61,7 +57,7 @@ public class DynArray<T> {
             throw new ArrayIndexOutOfBoundsException();
         }
         for (int i = index; i < count; i++) {
-            array[i] = getItem(i + 1);
+            array[i] = array[i+1];
         }
         count--;
         if (count - 1 < capacity / 2) {
