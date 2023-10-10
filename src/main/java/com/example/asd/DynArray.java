@@ -57,10 +57,10 @@ public class DynArray<T> {
             throw new ArrayIndexOutOfBoundsException();
         }
         for (int i = index; i < count; i++) {
-            array[i] = array[i+1];
+            array[i] = array[i + 1];
         }
         count--;
-        if (count - 1 < capacity / 2) {
+        if (count - 1 < capacity / 2 && capacity > 16) {
             capacity = (int) (capacity / 1.5);
             makeArray(capacity);
         }
