@@ -15,7 +15,7 @@ public class DynArray<T> {
         T[] tmp = array;
         array = (T[]) Array.newInstance(this.clazz, new_capacity);
         if (count > 0) {
-            for (int i = 0; i < tmp.length; i++) {
+            for (int i = 0; i < count; i++) {
                 array[i] = tmp[i];
             }
         }
@@ -61,7 +61,12 @@ public class DynArray<T> {
         }
         count--;
         if (count - 1 < capacity / 2 && capacity > 16) {
-            capacity = (int) (capacity / 1.5);
+            int tmp = (int) (capacity / 1.5);
+            if (tmp < 16) {
+                capacity = 16;
+            } else {
+                capacity = tmp;
+            }
             makeArray(capacity);
         }
     }
