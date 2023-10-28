@@ -1,6 +1,4 @@
-package OrderedList;
-
-import java.util.ArrayList;
+import java.util.*;
 
 class Node<T> {
     public T value;
@@ -77,8 +75,14 @@ public class OrderedList<T> {
     }
 
     public int compare(T v1, T v2) {
-        if ((int) v1 == (int) v2) return 0;
-        if ((int) v1 < (int) v2) return -1;
+        if (v1 instanceof Number && v2 instanceof Number) {
+            if ((int) v1 == (int) v2) return 0;
+            if ((int) v1 < (int) v2) return -1;
+            return 1;
+        }
+        if (v1 instanceof String && v2 instanceof String) {
+            return ((String) v1).compareTo((String) v2);
+        }
         return 1;
     }
 
