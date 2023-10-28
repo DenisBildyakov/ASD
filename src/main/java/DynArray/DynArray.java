@@ -1,4 +1,4 @@
-package com.example.asd.DynArray;
+package DynArray;
 
 public class DynArray<T> {
     public T[] array;

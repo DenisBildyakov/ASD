@@ -1,4 +1,4 @@
-package com.example.asd.Deque;
+package Deque;
 
 public class Deque<T> {
     private java.util.LinkedList<T> storage;

@@ -1,4 +1,4 @@
-package com.example.asd.Stack;
+package Stack;
 
 import java.util.*;
 

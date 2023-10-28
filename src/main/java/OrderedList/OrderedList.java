@@ -1,4 +1,4 @@
-package com.example.asd.orderedList;
+package OrderedList;
 
 import java.util.ArrayList;
 

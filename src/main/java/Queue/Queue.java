@@ -1,4 +1,4 @@
-package com.example.asd.Queue;
+package Queue;
 
 import java.util.*;
 
