@@ -76,11 +76,7 @@ public class OrderedList<T> {
 
     public int compare(T v1, T v2) {
         if ((int) v1 == (int) v2) return 0;
-        if (this._ascending && (int) v1 < (int) v2) {
-            return -1;
-        } else if (!this._ascending && (int) v1 > (int) v2) {
-            return -1;
-        }
+        if ((int) v1 < (int) v2) return -1;
         return 1;
     }
 
@@ -100,10 +96,10 @@ public class OrderedList<T> {
 
         Node<T> node = this.head;
         while (node != null) {
-            if (this._ascending && compare(node.value, value) >= 0) {
+            if (this._ascending && compare(value, node.value) >= 0 && compare(value, node.next.value) == -1) {
                 insertAfter(node, new Node<>(value));
                 return;
-            } else if (!this._ascending && compare(node.value, value) >= 0) {
+            } else if (!this._ascending && compare(value, node.value) >= 0 && compare(value, node.prev.value) == -1) {
                 insertAfter(node.prev, new Node<>(value));
                 return;
             }
