@@ -1,3 +1,5 @@
+package com.example.asd.LinkedList2;
+
 import java.util.*;
 
 public class LinkedList2 {

@@ -1,3 +1,5 @@
+package com.example.asd.DynArray;
+
 public class DynArray<T> {
     public T[] array;
     public int count;

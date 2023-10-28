@@ -1,3 +1,5 @@
+package com.example.asd.Queue;
+
 import java.util.*;
 
 public class Queue<T> {

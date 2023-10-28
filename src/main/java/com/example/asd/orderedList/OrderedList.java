@@ -1,4 +1,6 @@
-import java.util.*;
+package com.example.asd.orderedList;
+
+import java.util.ArrayList;
 
 class Node<T> {
     public T value;

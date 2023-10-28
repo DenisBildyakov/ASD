@@ -1,7 +1,8 @@
+package com.example.asd.LinkedList;
 
 import java.util.*;
 
-public class LinkedList {
+public class LinkedList<T> {
     public Node head;
     public Node tail;
 
