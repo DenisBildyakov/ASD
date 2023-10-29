@@ -162,12 +162,42 @@ public class OrderedList<T> {
     }
 
     public void delete(T val) {
-        Node<T> node = find(val);
-        node.prev.next = node.next;
-        node.prev = null;
-        node.next = null;
-        listSize--;
-
+        Node<T> node = this.head;
+        Node<T> prev = null;
+        while (node != null) {
+            if (node.value == val) {
+                if (prev == null) {
+                    this.head = node.next;
+                    if (this.head != null) {
+                        this.head.prev = null;
+                    }
+                    node.next = null;
+                    node.prev = null;
+                    listSize--;
+                    if (listSize == 0) {
+                        this.tail = null;
+                    }
+                    return;
+                }
+                if (node.next == null) {
+                    Node<T> toDelete = this.tail;
+                    this.tail = prev;
+                    this.tail.next = null;
+                    toDelete.prev = null;
+                    listSize--;
+                    return;
+                }
+                Node<T> next = node.next;
+                prev.next = next;
+                next.prev = prev;
+                node.next = null;
+                node.prev = null;
+                listSize--;
+                return;
+            }
+            prev = node;
+            node = node.next;
+        }
     }
 
     public void clear(boolean asc) {
