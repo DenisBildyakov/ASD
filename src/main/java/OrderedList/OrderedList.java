@@ -75,8 +75,17 @@ public class OrderedList<T> {
     }
 
     public int compare(T v1, T v2) {
-        if ((int) v1 == (int) v2) return 0;
-        if ((int) v1 < (int) v2) return -1;
+        if (v1 instanceof Number && v2 instanceof Number) {
+            if ((int) v1 == (int) v2) return 0;
+            if ((int) v1 < (int) v2) return -1;
+            return 1;
+        }
+        if (v1 instanceof String && v2 instanceof String) {
+            int i = ((String) v1).compareTo((String) v2);
+            if (i < 0) return -1;
+            if (i > 0) return 1;
+            return i;
+        }
         return 1;
     }
 
