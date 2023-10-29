@@ -1,4 +1,6 @@
-import java.util.*;
+package OrderedList;
+
+import java.util.ArrayList;
 
 class Node<T> {
     public T value;
@@ -54,7 +56,7 @@ public class OrderedList<T> {
             addInHead(_nodeToInsert);
         } else {
             if (_nodeToInsert != null) {
-                Node<T> after = find(_nodeAfter.value);
+                Node<T> after = _nodeAfter;
                 if (after != null) {
                     Node<T> next = after.next;
                     after.next = _nodeToInsert;
@@ -75,14 +77,8 @@ public class OrderedList<T> {
     }
 
     public int compare(T v1, T v2) {
-        if (v1 instanceof Number && v2 instanceof Number) {
-            if ((int) v1 == (int) v2) return 0;
-            if ((int) v1 < (int) v2) return -1;
-            return 1;
-        }
-        if (v1 instanceof String && v2 instanceof String) {
-            return ((String) v1).compareTo((String) v2);
-        }
+        if ((int) v1 == (int) v2) return 0;
+        if ((int) v1 < (int) v2) return -1;
         return 1;
     }
 
@@ -91,27 +87,30 @@ public class OrderedList<T> {
             addInHead(new Node<>(value));
             return;
         }
-        if (this._ascending && compare(value, this.tail.value) == 1) {
+        if (this._ascending && compare(value, this.tail.value) >= 0) {
             addInTail(new Node<>(value));
             return;
         }
-        if (!this._ascending && compare(value, this.head.value) == 1) {
+        if (!this._ascending && compare(value, this.head.value) >= 0) {
             addInHead(new Node<>(value));
             return;
         }
-
-        Node<T> node = this.head;
-        while (node != null) {
-            if (this._ascending && compare(value, node.value) >= 0 && compare(value, node.next.value) == -1) {
-                insertAfter(node, new Node<>(value));
-                return;
-            } else if (!this._ascending && compare(value, node.value) >= 0 && compare(value, node.prev.value) == -1) {
-                insertAfter(node.prev, new Node<>(value));
-                return;
-            }
-            node = node.next;
+        if (this._ascending && compare(value, this.head.value) == -1) {
+            addInHead(new Node<>(value));
+            return;
         }
-
+        if (!this._ascending && compare(value, this.tail.value) == -1) {
+            addInTail(new Node<>(value));
+            return;
+        }
+        if (this._ascending) {
+            Node<T> insertAfterNode = findLatest(value);
+            insertAfter(insertAfterNode, new Node<>(value));
+        }
+        if (!this._ascending) {
+            Node<T> insertAfterNode = findFirst(value);
+            insertAfter(insertAfterNode.prev, new Node<>(value));
+        }
     }
 
     public Node<T> find(T val) {
@@ -128,6 +127,39 @@ public class OrderedList<T> {
             node = node.next;
         }
         return null;
+    }
+    private Node<T> findFirst(T val) {
+        if (this._ascending && compare(val, this.tail.value) == 1) {
+            return null;
+        }
+        if (!this._ascending && compare(val, this.head.value) == 1) {
+            return null;
+        }
+        Node<T> node = this.head;
+        while (node != null) {
+            if (compare(val, node.value) >= 0)
+                return node;
+            node = node.next;
+        }
+        return null;
+    }
+
+    private Node<T> findLatest(T val) {
+        Node<T> nodeToFind = null;
+        if (this._ascending && compare(val, this.tail.value) >= 0) {
+            return this.tail;
+        }
+        if (!this._ascending && compare(val, this.head.value) >= 0) {
+            return this.head;
+        }
+        Node<T> node = this.head;
+        while (node != null) {
+            if (compare(val, node.value) >= 0) {
+                nodeToFind = node;
+            }
+            node = node.next;
+        }
+        return nodeToFind;
     }
 
     public void delete(T val) {
