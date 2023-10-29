@@ -1,6 +1,4 @@
-package OrderedList;
-
-import java.util.ArrayList;
+import java.util.*;
 
 class Node<T> {
     public T value;
@@ -128,6 +126,7 @@ public class OrderedList<T> {
         }
         return null;
     }
+
     private Node<T> findFirst(T val) {
         if (this._ascending && compare(val, this.tail.value) == 1) {
             return null;
