@@ -34,8 +34,8 @@ public class HashTable {
     }
 
     public int find(String value) {
-        int i = seekSlot(value);
-        if (slots[i].equals(value)) return i;
+        int i = hashFun(value);
+        if (slots[i] != null && slots[i].equals(value)) return i;
         return -1;
     }
 }
