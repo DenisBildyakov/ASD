@@ -23,6 +23,7 @@ public class HashTable {
         while (slots[i] != null && counter < seekCycles) {
             i = i + step >= slots.length ? (i + step) % slots.length : i + step;
             if (slots[i] == null) return i;
+            counter++;
         }
         return -1;
     }
@@ -41,6 +42,7 @@ public class HashTable {
         while (slots[i] != null && counter < seekCycles) {
             i = i + step >= slots.length ? (i + step) % slots.length : i + step;
             if (slots[i] != null && slots[i].equals(value)) return i;
+            counter++;
         }
         return -1;
     }
