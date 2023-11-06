@@ -36,6 +36,12 @@ public class HashTable {
     public int find(String value) {
         int i = hashFun(value);
         if (slots[i] != null && slots[i].equals(value)) return i;
+        int seekCycles = slots.length / step + 1;
+        int counter = 0;
+        while (slots[i] != null && counter < seekCycles) {
+            i = i + step >= slots.length ? (i + step) % slots.length : i + step;
+            if (slots[i] != null && slots[i].equals(value)) return i;
+        }
         return -1;
     }
 }
