@@ -1,3 +1,5 @@
+package NativeDictionary;
+
 import java.lang.reflect.Array;
 
 class NativeDictionary<T> {
@@ -13,23 +15,27 @@ class NativeDictionary<T> {
 
     public int hashFun(String key) {
         int i = 0;
-        if (key != null) i = key.hashCode();
+        if (key != null) {
+            i = key.hashCode();
+        }
         return i % slots.length;
     }
 
     public boolean isKey(String key) {
-        if (key == null) return false;
+        if (key == null) {
+            return false;
+        }
         int i = hashFun(key);
         return slots[i] != null && slots[i].equals(key);
     }
 
     public void put(String key, T value) {
         int i = hashFun(key);
-        if (slots[i] == null) {
-            slots[i] = key;
+        if (slots[i] != null && slots[i].equals(key)) {
             values[i] = value;
         }
-        if (slots[i] != null && slots[i].equals(key)) {
+        if (slots[i] == null) {
+            slots[i] = key;
             values[i] = value;
         }
     }
