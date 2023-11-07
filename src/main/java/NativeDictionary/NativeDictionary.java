@@ -1,3 +1,5 @@
+package NativeDictionary;
+
 import java.lang.reflect.Array;
 
 class NativeDictionary<T> {
@@ -7,6 +9,7 @@ class NativeDictionary<T> {
 
     public NativeDictionary(int sz, Class clazz) {
         size = sz;
+        if (sz <= 0) size = 1;
         slots = new String[size];
         values = (T[]) Array.newInstance(clazz, this.size);
     }
@@ -16,7 +19,6 @@ class NativeDictionary<T> {
         if (key != null) {
             i = key.hashCode();
         }
-        if (slots.length == 0) return i;
         return i % slots.length;
     }
 
