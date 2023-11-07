@@ -1,5 +1,3 @@
-package NativeDictionary;
-
 import java.lang.reflect.Array;
 
 class NativeDictionary<T> {
@@ -18,6 +16,7 @@ class NativeDictionary<T> {
         if (key != null) {
             i = key.hashCode();
         }
+        if (slots.length == 0) return i;
         return i % slots.length;
     }
 
