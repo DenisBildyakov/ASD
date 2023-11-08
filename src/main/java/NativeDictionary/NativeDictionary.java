@@ -19,7 +19,7 @@ class NativeDictionary<T> {
         if (key != null) {
             i = key.hashCode();
         }
-        return i % slots.length;
+        return i % (slots.length-1);
     }
 
     public boolean isKey(String key) {
