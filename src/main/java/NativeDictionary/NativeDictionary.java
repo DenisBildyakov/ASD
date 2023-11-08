@@ -1,5 +1,3 @@
-package NativeDictionary;
-
 import java.lang.reflect.Array;
 
 class NativeDictionary<T> {
