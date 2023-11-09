@@ -1,3 +1,5 @@
+package NativeDictionary;
+
 import java.lang.reflect.Array;
 
 class NativeDictionary<T> {
@@ -17,7 +19,7 @@ class NativeDictionary<T> {
         if (key != null) {
             i = key.hashCode();
         }
-        return i % (slots.length-1);
+        return i % slots.length;
     }
 
     public boolean isKey(String key) {
