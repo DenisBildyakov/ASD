@@ -27,6 +27,10 @@ class NativeDictionaryTest {
         nativeDictionary3.put("B", "b");
         assertTrue(nativeDictionary3.isKey("A"));
         assertTrue(nativeDictionary3.isKey("B"));
+
+        assertFalse(nativeDictionary.isKey(null));
+        assertFalse(nativeDictionary2.isKey(null));
+        assertFalse(nativeDictionary3.isKey(null));
     }
 
     @Test
