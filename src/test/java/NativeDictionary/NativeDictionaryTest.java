@@ -31,6 +31,35 @@ class NativeDictionaryTest {
         assertFalse(nativeDictionary.isKey(null));
         assertFalse(nativeDictionary2.isKey(null));
         assertFalse(nativeDictionary3.isKey(null));
+
+        NativeDictionary<String> nativeDictionary4 = new NativeDictionary<String>(17, String.class);
+        for (int i = 0; i < 101; i++) {
+            nativeDictionary4.put("A", "a");
+        }
+        assertTrue(nativeDictionary4.isKey("A"));
+        assertFalse(nativeDictionary4.isKey("B"));
+
+        NativeDictionary<String> nativeDictionary5 = new NativeDictionary<String>(17, String.class);
+        for (int i = 0; i < nativeDictionary5.slots.length; i++) {
+            nativeDictionary5.slots[i] = "A";
+            nativeDictionary5.values[i] = "A";
+        }
+        assertTrue(nativeDictionary5.isKey("A"));
+        assertFalse(nativeDictionary5.isKey("B"));
+
+        NativeDictionary<String> nativeDictionary6 = new NativeDictionary<String>(17, String.class);
+        char ch = 'A';
+        for (int i = 0; i < nativeDictionary6.slots.length; i++) {
+            nativeDictionary6.put(String.valueOf(ch), String.valueOf(ch));
+            ch = (char) (ch + 1);
+        }
+        ch = 'A';
+        for (int i = 0; i < nativeDictionary6.slots.length; i++) {
+            assertTrue(nativeDictionary6.isKey(String.valueOf(ch)));
+            ch = (char) (ch + 1);
+        }
+        assertTrue(nativeDictionary6.isKey("A"));
+        assertFalse(nativeDictionary6.isKey("Hello"));
     }
 
     @Test
