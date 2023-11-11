@@ -21,7 +21,7 @@ class NativeDictionary<T> {
         if (key != null) {
             i = key.hashCode();
         }
-        return i % slots.length;
+        return Math.abs(i % slots.length);
     }
 
     public int seekSlot(String value) {

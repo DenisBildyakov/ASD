@@ -2,6 +2,8 @@ package NativeDictionary;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class NativeDictionaryTest {
@@ -60,6 +62,13 @@ class NativeDictionaryTest {
         }
         assertTrue(nativeDictionary6.isKey("A"));
         assertFalse(nativeDictionary6.isKey("Hello"));
+
+        String s = "0123456789" , s1 = "1234567890";
+        int v1 = 123456789;
+        NativeDictionary<Integer> nd = new NativeDictionary<Integer>(97, Integer.class);
+        for(int j=0; j<100; j++) nd.put(s, v1);
+        assertTrue(nd.isKey(s));
+        assertFalse(nd.isKey(s1));
     }
 
     @Test
