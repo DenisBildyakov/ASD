@@ -42,6 +42,9 @@ class NativeDictionary<T> {
             return false;
         }
         int i = hashFun(key);
+        if (slots[i] != null && slots[i].equals(key)) return true;
+        i = find(key);
+        if (i == -1) return false;
         return slots[i] != null && slots[i].equals(key);
     }
 
