@@ -1,81 +1,52 @@
 public class PowerSet {
 
-    private List<String> list;
-    private int size;
+    public HashMap<String, String> list;
 
     public PowerSet() {
-        list = new ArrayList<>();
-        size = 0;
+        list = new HashMap<>();
     }
 
     public int size() {
-        return size;
-    }
-
-    private int hashFun(String value) {
-        int i = value.hashCode();
-        return Math.abs(i % list.size());
+        return list.size();
     }
 
     public void put(String value) {
-        if (list.contains(value)) return;
-        int i = hashFun(value);
-        if (list.get(i) == null) {
-            list.add(i, value);
-            size++;
-            return;
-        }
-        int step = 3;
-        for (int k = 0; k < list.size() / (step + 1); k++) {
-            i = i + step >= list.size() ? (i + step) % list.size() : i + step;
-            if (list.get(i) == null) {
-                list.add(i, value);
-                size++;
-                return;
-            }
-        }
+        list.computeIfAbsent(value, v -> "null");
     }
 
     public boolean get(String value) {
-        return list.contains(value);
+        return list.containsKey(value);
     }
 
     public boolean remove(String value) {
-        boolean removeResult = list.remove(value);
-        if (removeResult) size--;
-        return removeResult;
+        String s = list.remove(value);
+        return !list.containsKey(value);
     }
 
     public PowerSet intersection(PowerSet set2) {
         PowerSet powerSet = new PowerSet();
-        for (int i = 0; i < set2.list.size(); i++) {
-            if (list.contains(set2.list.get(i))) powerSet.put(set2.list.get(i));
-        }
+        list.entrySet().stream()
+                .filter(entry -> set2.list.containsKey(entry.getKey()))
+                .forEach(k -> powerSet.put(k.getKey()));
         return powerSet;
     }
 
     public PowerSet union(PowerSet set2) {
         PowerSet powerSet = new PowerSet();
-        for (int i = 0; i < set2.list.size(); i++) {
-            put(set2.list.get(i));
-        }
+        this.list.forEach((k, v) -> powerSet.put(k));
+        set2.list.forEach((k, v) -> powerSet.put(k));
         return powerSet;
     }
 
     public PowerSet difference(PowerSet set2) {
         PowerSet powerSet = new PowerSet();
-        for (int i = 0; i < list.size(); i++) {
-            if (!set2.list.contains(list.get(i))) {
-                powerSet.put(list.get(i));
-            }
-        }
+        this.list.entrySet().stream()
+                .filter(entry -> !set2.list.containsKey(entry.getKey()))
+                .forEach(entry -> powerSet.put(entry.getKey()));
         return powerSet;
     }
 
     public boolean isSubset(PowerSet set2) {
-        for (int i = 0; i < set2.list.size(); i++) {
-            if (!list.contains(set2.list.get(i))) return false;
-        }
-        return true;
+        return set2.list.keySet().stream().allMatch(k -> this.list.containsKey(k));
     }
 }
