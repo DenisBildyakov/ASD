@@ -20,7 +20,7 @@ public class PowerSet {
 
     public boolean remove(String value) {
         String s = list.remove(value);
-        return !list.containsKey(value);
+        return s != null && !list.containsKey(value);
     }
 
     public PowerSet intersection(PowerSet set2) {
