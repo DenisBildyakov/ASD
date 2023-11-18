@@ -1,14 +1,12 @@
 public class BloomFilter {
     public int filter_len;
-
-    private final byte[] filter1;
-
-    private final byte[] filter2;
+    private int filter1;
+    private int filter2;
 
     public BloomFilter(int f_len) {
         filter_len = f_len;
-        filter1 = new byte[filter_len];
-        filter2 = new byte[filter_len];
+        filter1 = 0;
+        filter2 = 0;
     }
 
     private int iteration(String value, int randomNumber) {
@@ -35,13 +33,13 @@ public class BloomFilter {
     public void add(String str1) {
         int i = hash1(str1);
         int k = hash2(str1);
-        filter1[i] = 1;
-        filter2[k] = 1;
+        filter1 |= (1 << i);
+        filter2 |= (1 << k);
     }
 
     public boolean isValue(String str1) {
         int i = hash1(str1);
         int k = hash2(str1);
-        return filter1[i] == 1 && filter2[k] == 1;
+        return (filter1 & (1 << i)) == (1 << i) && (filter2 & (1 << k)) == (1 << k);
     }
 }
