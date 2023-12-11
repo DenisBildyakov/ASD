@@ -1,3 +1,5 @@
+package BloomFilter;
+
 public class BloomFilter {
     public int filter_len;
     private int filter1;

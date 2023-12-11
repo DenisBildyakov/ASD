@@ -1,3 +1,7 @@
+package NativeCache;
+
+import java.lang.reflect.Array;
+
 public class NativeCache<T> {
     public int size;
     public String[] slots;

@@ -15,7 +15,7 @@ public class DynArray<T> {
 
     public void makeArray(int new_capacity) {
         T[] tmp = array;
-        array = (T[]) Array.newInstance(this.clazz, new_capacity);
+//        array = (T[]) Array.newInstance(this.clazz, new_capacity);
         if (count > 0) {
             for (int i = 0; i < count; i++) {
                 array[i] = tmp[i];

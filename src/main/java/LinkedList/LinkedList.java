@@ -2,7 +2,7 @@ package LinkedList;
 
 import java.util.*;
 
-public class LinkedList<T> {
+public class LinkedList {
     public Node head;
     public Node tail;
 
@@ -12,6 +12,14 @@ public class LinkedList<T> {
         head = null;
         tail = null;
         listSize = 0;
+    }
+
+    public Node getHead() {
+        return head;
+    }
+
+    public Node getTail() {
+        return tail;
     }
 
     public void addInTail(Node item) {
@@ -88,32 +96,21 @@ public class LinkedList<T> {
     public void removeAll(int _value) {
         Node node = this.head;
         Node prev = null;
-        while (node != null) {
+        int step = listSize;
+        for (int i = 0; i < step; i++) {
             if (node.value == _value) {
-                if (prev == null) {
-                    Node tmp = node.next;
-                    this.head.next = null;
-                    this.head = tmp;
-                    listSize--;
-                    if (listSize == 0) {
-                        this.tail = null;
-                        node = null;
-                        continue;
-                    }
-                    continue;
-                }
-                if (node.next == null) {
-                    this.tail = prev;
-                    this.tail.next = null;
-                    listSize--;
-                    node = null;
-                    continue;
-                }
-                Node toRemove = node;
-                prev.next = node.next;
-                node = node.next;
-                toRemove.next = null;
+                Node nextNode = node.next;
+                node.next = null;
                 listSize--;
+                if (prev == null) {
+                    this.head = nextNode;
+                } else {
+                    prev.next = nextNode;
+                }
+                if (nextNode == null) {
+                    this.tail = prev;
+                }
+                node = nextNode;
                 continue;
             }
             prev = node;
@@ -158,6 +155,19 @@ public class LinkedList<T> {
                 }
             }
         }
+    }
+
+    public static LinkedList twoListAddition(LinkedList list1, LinkedList list2) {
+        if (list1.count() != list2.count()) return null;
+        LinkedList listOfTwo = new LinkedList();
+        Node node1 = list1.head;
+        Node node2 = list2.head;
+        for (int i = 0; i < list1.count(); i++) {
+            listOfTwo.addInTail(new Node(node1.value + node2.value));
+            node1 = node1.next;
+            node2 = node2.next;
+        }
+        return listOfTwo;
     }
 }
 

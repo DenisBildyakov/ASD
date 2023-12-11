@@ -1,3 +1,7 @@
+package PowerSet;
+
+import java.util.HashMap;
+
 public class PowerSet {
 
     public HashMap<String, String> list;

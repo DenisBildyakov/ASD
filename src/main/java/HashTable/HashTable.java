@@ -1,3 +1,5 @@
+package HashTable;
+
 public class HashTable {
     public int size;
     public int step;
@@ -12,7 +14,7 @@ public class HashTable {
 
     public int hashFun(String value) {
         int i = value.hashCode();
-        return i % slots.length;
+        return Math.abs(i % slots.length);
     }
 
     public int seekSlot(String value) {
