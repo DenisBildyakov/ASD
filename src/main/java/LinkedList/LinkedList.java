@@ -158,7 +158,7 @@ public class LinkedList {
     }
 
     public static LinkedList twoListAddition(LinkedList list1, LinkedList list2) {
-        if (list1.count() != list2.count()) return null;
+        if (list1.count() != list2.count() || list1.count() == 0 || list2.count() == 0) return null;
         LinkedList listOfTwo = new LinkedList();
         Node node1 = list1.head;
         Node node2 = list2.head;

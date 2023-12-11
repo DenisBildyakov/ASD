@@ -1,7 +1,6 @@
 package LinkedList;
 
 
-import LinkedList2Dummy.LinkedList2Dummy;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -279,5 +278,29 @@ class LinkedListTest {
         }
         LinkedList result2 = LinkedList.twoListAddition(linkedList3, linkedList4);
         assertNull(result2);
+
+
+        LinkedList linkedList5 = new LinkedList();
+        LinkedList linkedList6 = new LinkedList();
+        LinkedList result3 = LinkedList.twoListAddition(linkedList5, linkedList6);
+        assertNull(result3);
+
+
+        LinkedList linkedList7 = new LinkedList();
+        for (int i = 0; i < 10; i++) {
+            linkedList7.addInTail(new Node(1));
+        }
+        LinkedList linkedList8 = new LinkedList();
+        for (int i = 0; i < 10; i++) {
+            linkedList8.addInTail(new Node(i));
+        }
+        LinkedList result4 = LinkedList.twoListAddition(linkedList7, linkedList8);
+        assertNotNull(result4);
+        assertEquals(10, result4.count());
+        Node node2 = result4.getHead();
+        for (int i = 0; i < result1.count(); i++) {
+            assertEquals(1 + i, node2.value);
+            node2 = node2.next;
+        }
     }
 }
