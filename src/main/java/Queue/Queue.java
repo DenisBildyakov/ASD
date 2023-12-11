@@ -1,11 +1,12 @@
 package Queue;
 
-import java.util.*;
+import java.util.LinkedList;
 
 public class Queue<T> {
-    private java.util.LinkedList<T> storage;
+    private final LinkedList<T> storage;
+
     public Queue() {
-        storage = new java.util.LinkedList<>();
+        storage = new LinkedList<>();
     }
 
     public void enqueue(T item) {
@@ -19,6 +20,14 @@ public class Queue<T> {
 
     public int size() {
         return storage.size();
+    }
+
+    public void rotateFunction(int k) {
+        for (int i = 0; i < k; i++) {
+            if (!this.storage.isEmpty()) {
+                enqueue(dequeue());
+            }
+        }
     }
 
 }
